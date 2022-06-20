@@ -1,0 +1,22 @@
+<div class="container">
+  <center><h1>Cart Show</h1></center>
+  <div class="container mt-5">
+    <% @cart.cart_items.each do |cart_item| %>
+      <h5><strong>Item: </strong><%= cart_item.product.name %></h5>
+      <h5><strong>Price: </strong><%= number_to_currency(cart_item.product.price) %></h5>
+      <h5><strong>Quantity: </strong><%= cart_item.quantity %></h5>
+      <h5><strong>Total Price: </strong><%= number_to_currency(cart_item.total_price) %></h5>
+      <%= link_to "Add More", cart_item_add_path(cart_item), data: {turbo_method: :post}, class: "btn btn-primary", style:"background-color:blue" %>
+      <%= link_to "Reduce", cart_item_reduce_path(cart_item), data: {turbo_method: :post}, class: "btn btn-primary", style:"background-color:red" %>
+      <br>
+      <br>
+    <% end %>
+  </div>
+  <hr>
+  <div class="container mt-4">
+    <h4>Discount: <%= number_to_currency(@cart.total_without_discount - @cart.sub_total) %></h4>
+    <h4>Total: <%= number_to_currency(@cart.sub_total) %></h4>
+    <%= link_to "Add more items", products_path, class: "btn btn-primary", style:"background-color:blue" %>
+    <%= link_to "Empty Cart", cart_path(@current_cart), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-primary", style:"background-color:red" %>
+  </div>
+</div>

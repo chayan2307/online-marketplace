@@ -1,0 +1,17 @@
+<%= form_for(@product) do |f| %>
+  <p>
+    <%= f.label :product_code %><br>
+    <%= f.text_field :product_code, required: true, autofocus: true, placeholder: "Enter product code" %>
+  </p>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name, required: true, autofocus: true, placeholder: "Enter product name" %>
+  </p>
+  <p>
+    <%= f.label :price %><br>
+    <%= f.text_field :price, required: true %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
